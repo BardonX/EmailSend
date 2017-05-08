@@ -18,9 +18,9 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * 
  * @ClassName: Mail
- * @Description: ÓÊ¼şÈº·¢ºËĞÄÀà
+ * @Description: é‚®ä»¶ç¾¤å‘æ ¸å¿ƒç±»
  * @author: Bardon
- * @date: 2017Äê5ÔÂ7ÈÕ ÉÏÎç9:35:40
+ * @date: 2017å¹´5æœˆ7æ—¥ ä¸Šåˆ9:35:40
  * @version1.0
  */
 public class Mail extends HttpServlet {
@@ -33,43 +33,43 @@ public class Mail extends HttpServlet {
 		try {
 			req.setCharacterEncoding("utf-8");
 			resp.setContentType("text/html;charset=utf-8");
-			//½ÓÊÕ²ÎÊı
+			//æ¥æ”¶å‚æ•°
 			String name=req.getParameter("m_name");
 			String topic=req.getParameter("m_topic");
-			//ÕıÎÄ
+			//æ­£æ–‡
 			String con=req.getParameter("c_con");
 			
-			//ÕË»§ ÓÃ»§Ãû ÊÚÈ¨Âë
+			//è´¦æˆ· ç”¨æˆ·å æˆæƒç ï¼ˆæˆæƒç å·²åšéšè—ï¼‰
 			String username="13545254244@163.com";
-			String password="1757emailpj";
+			String password="1757email**";
 			
-			//´´½¨Ò»¸ö¶ÔÏóÓÃÀ´¶ÁÈ¡ÓÊÏäµÄÅäÖÃÎÄ¼ş
+			//åˆ›å»ºä¸€ä¸ªå¯¹è±¡ç”¨æ¥è¯»å–é‚®ç®±çš„é…ç½®æ–‡ä»¶
 			Properties props=new Properties();
-			props.put("mail.transport.protocol", "smtp");//ÓÊ¼ş´«ÊäĞ­Òé
-			props.put("mail.host", "smtp.163.com");//·şÎñÖ÷»ú
-			props.put("mail.smtp.auth", true);//ÃÜÂë°²È«ÉèÖÃ
+			props.put("mail.transport.protocol", "smtp");//é‚®ä»¶ä¼ è¾“åè®®
+			props.put("mail.host", "smtp.163.com");//æœåŠ¡ä¸»æœº
+			props.put("mail.smtp.auth", true);//å¯†ç å®‰å…¨è®¾ç½®
 			 
 			Session session=Session.getInstance(props);
-			//´´½¨Ò»¸öÓÊÏäµÄ¿Í»§¶Ë
+			//åˆ›å»ºä¸€ä¸ªé‚®ç®±çš„å®¢æˆ·ç«¯
 			MimeMessage ms=new MimeMessage(session);
-			//ÉèÖÃÓÊ¼şÀ´Ô´
+			//è®¾ç½®é‚®ä»¶æ¥æº
 			Address toaddress=new InternetAddress(username);
 			ms.setFrom(toaddress);
-			//½ÓÊÕÕß
+			//æ¥æ”¶è€…
 			ms.setRecipients(Message.RecipientType.BCC, name);
 			ms.setSubject(topic);
 			ms.setText(con);
 			ms.saveChanges();
 			
-			//´´½¨·¢ËÍ¹¤¾ß
+			//åˆ›å»ºå‘é€å·¥å…·
 			Transport ts=session.getTransport();
 			ts.connect(username,password);
 			ts.sendMessage(ms, ms.getAllRecipients());
 			ts.close();
 			
-			//ÑéÖ¤
+			//éªŒè¯
 			PrintWriter pw=resp.getWriter();
-			pw.print("·¢ËÍ³É¹¦");
+			pw.print("å‘é€æˆåŠŸ");
 			
 		} catch (Exception e) {
 			e.printStackTrace();
